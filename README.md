@@ -95,89 +95,125 @@ We will create a DNS A-record on the DC-1 virtual machine for the mainframe and 
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+![Screenshot 2025-02-07 152610](https://github.com/user-attachments/assets/ee0d9f15-3f39-4c46-8d06-97f2d1bf2533)
+
 </p>
 
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Open the DC-1 and search for DNS.  Click dc-1, Forward Lookup Zones, and mydomain.com in the DNS manager. There, you will see the existing A- records.  Right-click, select New Host(A or AAA), type in mainframe, the dc-1 private IP address, select Create associated pointer(PTR) record, then Add Host. The new A-record mainframe is created. 
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  
+![Screenshot 2025-02-07 152300](https://github.com/user-attachments/assets/3d54485c-26b6-4585-b559-d19a8c02d03c)
+
+![Screenshot 2025-02-07 152429](https://github.com/user-attachments/assets/72394efe-f191-4fbf-9bb7-5603006c686a)
+
+![Screenshot 2025-02-07 152701](https://github.com/user-attachments/assets/55803bc7-491f-4895-bfee-95b78294236b)
+
+![Screenshot 2025-02-07 152845](https://github.com/user-attachments/assets/f36ee019-93ef-4c0e-b2f2-935575d1bc8c)
+
+![Screenshot 2025-02-07 152915](https://github.com/user-attachments/assets/a1f82959-0f4a-4368-952e-7b0b7d2d0f67)
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  
+Let’s go back to client -1 and ping the mainframe again. It will ping and match the DC -1 IP address.
+
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  
+![Screenshot 2025-02-07 153058](https://github.com/user-attachments/assets/a6b980f7-36e1-4265-a19d-124b9bc2275b)
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Return to DC -1 and change the mainframe’s record address to 8.8.8.8. Double-click the mainframe in the DNS Manager, then change its IP address to 8.8.8.8.
 </p>
 <br />
 
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  
+![Screenshot 2025-02-07 153319](https://github.com/user-attachments/assets/8e29e165-b398-469d-a79c-8d43c367285d)
+
+![Screenshot 2025-02-07 153403](https://github.com/user-attachments/assets/75553b38-9739-467e-816a-628248f479e5)
+
+</p>
+
+<p>
+Go back to client -1 and ping the mainframe again. The old IP address will still be in the Local DNS cache. Type it in ipconfig/ displaydns > dns.text, enter, and then type notepad dns.txt to examine the local DNS cache. We must flush the cache so the new IP address will appear.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  
+![Screenshot 2025-02-07 153527](https://github.com/user-attachments/assets/1729c5b9-11cd-40ad-9af3-11418d4d4edc)
+
+![Screenshot 2025-02-07 153842](https://github.com/user-attachments/assets/3da4299d-d894-40ac-ad33-863c5c7a4492)
+
+![Screenshot 2025-02-07 153910](https://github.com/user-attachments/assets/ab503ac8-de5c-48e4-9c4e-7f6ef0ee43a1)
+
+![Screenshot 2025-02-07 153950](https://github.com/user-attachments/assets/c186446a-e2d7-48b0-ab55-b121ce30e6b0)
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+To do this, open Powershell, run it as administrator and type in ipconfig/flushdns. It will flush the DNS cache. Type ipconfig/displaydns and ensure the old IP address is not in the cache. 
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  
+![Screenshot 2025-02-07 154110](https://github.com/user-attachments/assets/c385c12b-169b-4e62-8506-b0027369f370)
+
+![Screenshot 2025-02-07 154219](https://github.com/user-attachments/assets/62ad44b9-a8b0-4b30-8d95-20cf385004f1)
+
+![Screenshot 2025-02-07 154241](https://github.com/user-attachments/assets/7e727492-05e5-4f05-bc32-b7d84ff84257)
+
+![Screenshot 2025-02-07 154336](https://github.com/user-attachments/assets/0b83c38a-a3c6-42c6-a162-44ccb6ec5d21)
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Ping the mainframe again, and the new IP address will appear. 
+
 </p>
 <br />
 
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  
+![Screenshot 2025-02-07 154438](https://github.com/user-attachments/assets/cb4c518e-edff-4c6b-8998-7c78eae588e6)
+
+</p>
+
+<p>
+Return to DC-1 and create a CNAME record that points the host “search” to map to “www.google.com” in the DNS Manager. Right-click and select New Alias (CNAME), name it, search and map the target host to www.google.com, and then hit okay.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  
+![Screenshot 2025-02-07 154543](https://github.com/user-attachments/assets/859071f6-77b9-4bee-a792-a52fd9288e71)
+
+![Screenshot 2025-02-07 154628](https://github.com/user-attachments/assets/47254e99-c163-45b2-a455-b0a743cc4a90)
+
+![Screenshot 2025-02-07 154747](https://github.com/user-attachments/assets/9918e3ec-a6f0-4f55-a12b-e050b8b15bb4)
+
+![Screenshot 2025-02-07 154830](https://github.com/user-attachments/assets/0f5296d9-a535-4f7c-aa2e-16808750d99e)
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Back in client -1, ping search and examine the CNAME record. It pings “www.google.com”. Type in nslookup search and explore the results of the CNAME record.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+  
+![Screenshot 2025-02-07 155045](https://github.com/user-attachments/assets/a4629cd6-6c9a-49e5-b107-1686687c5a41)
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
-<br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+
